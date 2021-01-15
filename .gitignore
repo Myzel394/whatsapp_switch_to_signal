@@ -1,0 +1,7 @@
+venv
+geckodriver.log
+
+.idea
+
+**/.idea
+**/*.idea
