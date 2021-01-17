@@ -5,3 +5,9 @@ geckodriver.log
 
 **/.idea
 **/*.idea
+
+.env
+*.env
+*/*.env
+**/*.env
+**/.env
