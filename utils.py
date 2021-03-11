@@ -17,21 +17,21 @@ def create_message(sender: Optional[Contact] = None) -> str:
     else:
         hello_message = ""
         
-    recommended_videos_list = "\n* ".join(RECOMMENDED_YOUTUBE_VIDEOS)
+    recommended_videos_list = "* " + "\n* ".join(RECOMMENDED_YOUTUBE_VIDEOS)
     
     message = f"""
-    {hello_message}
+    {hello_message}!
 
-    Ab sofort bin ich über Signal erreichbar!
     Bitte schreib mir ab sofort über Signal. Es ist einfach zu benutzen, kann schnell installiert werden und
     trackt dich nicht wie Whatsapp.
 
     Android: https://bit.ly/download-signal
     iPhone: https://bit.ly/signal-app
 
-    Schreibe deine Nachricht bei Signal bitte nochmal, da die Whatsapp-Nachrichten ab sofort nur noch sehr
-    spät von mir gelesen werden.
-    Hier sind ein paar Videos von Leuten, die sich noch besser im Bereich Privatspähre, IT und Technik auskennen:
+    Schreibe deine Nachricht bei Signal bitte nochmal, da ich auf Whatsapp verzichte.
+    
+    Hier sind ein paar Videos von Leuten, die sich sehr gut im Bereich Privatspähre, IT und Technik auskennen:
+    
     {recommended_videos_list}
 
     Ich freue mich auf dich bei Signal :)
