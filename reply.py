@@ -1,8 +1,9 @@
 from openwa import Contact
-from openwa.objects.chat import GroupChat
+from openwa.objects.chat import Chat, GroupChat
 from openwa.objects.message import Message
 
 from settings import *
+from store import add_informed_person, should_inform_person
 from utils import create_message, am_i_mentioned
 
 __all__ = [
@@ -11,7 +12,13 @@ __all__ = [
 
 
 def to_user_chat(contact: Contact) -> None:
-    user_chat = contact.get_chat()
+    user_chat: Chat = contact.get_chat()
+    chat_id = user_chat.id
+    
+    if not should_inform_person(chat_id):
+        return
+    
+    add_informed_person(chat_id)
     
     user_chat.send_message(create_message(contact))
 
