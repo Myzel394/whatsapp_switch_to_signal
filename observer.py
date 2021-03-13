@@ -5,15 +5,19 @@ from openwa.objects.message import Message, MessageGroup
 
 from constants import driver
 import reply
+from utils import log
 
 __all__ = [
     "ReplyObserver"
 ]
 
 
+
 class ReplyObserver:
     def on_message_received(self, _):
         unread: list[MessageGroup] = driver.get_unread()
+
+        log(f"{len(unread)} new unread messages")
         
         for message_group in unread:
             chat: Union[UserChat, GroupChat] = message_group.chat
@@ -24,6 +28,7 @@ class ReplyObserver:
                 reply.to_group_chat(chat, unread_message)
             else:
                 # Last message must be from user, because the bot replies to it
-                contact = chat.get_messages()[1].sender
+                message = unread_message[-1]
+                contact = message.sender
                 
                 reply.to_user_chat(contact)

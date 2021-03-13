@@ -1,4 +1,6 @@
+import logging
 import textwrap
+from datetime import datetime
 from typing import *
 
 from openwa import Contact
@@ -7,7 +9,7 @@ from openwa.objects.message import Message
 from settings import *
 
 __all__ = [
-    "create_message", "is_phone_number_mentioned", "am_i_mentioned"
+    "create_message", "is_phone_number_mentioned", "am_i_mentioned", "format_now", "log"
 ]
 
 
@@ -50,3 +52,10 @@ def am_i_mentioned(message: Message) -> bool:
     # How to get id from author?
     return is_phone_number_mentioned(message, MY_PHONE_NUMBER)
 
+
+def format_now() -> str:
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
+def log(message: str) -> None:
+    logging.info(f"[{format_now()}] {message}")

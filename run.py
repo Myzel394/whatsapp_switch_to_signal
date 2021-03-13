@@ -1,15 +1,22 @@
+import logging
 import time
+from datetime import datetime
 
 from constants import driver
 from observer import ReplyObserver
+from settings import ACTIVATE_LOGGING
+from utils import log
 
 
 def run():
-    print("Waiting for QR")
-    print("Bot started")
+    if ACTIVATE_LOGGING:
+        logging.root.setLevel(logging.INFO)
+    
+    log("Initializing bot")
 
     driver.subscribe_new_messages(ReplyObserver())
-    print("Waiting for new messages...")
+    
+    log("Waiting for new messages...")
 
     # Locks the main thread while the subscription in running
     while True:
